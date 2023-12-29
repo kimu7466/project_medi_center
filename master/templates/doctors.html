@@ -1,0 +1,70 @@
+  {% extends 'base.html' %}
+  {% block title %}
+  Doctors
+  {% endblock %}
+  
+  {% block body %}
+  <!DOCTYPE html>
+  <html lang="en">
+  
+  <head>
+      <meta charset="UTF-8">
+      <title>Dashboard</title>
+      <style>
+          /* Basic styling for the tabs */
+          .dashboard {
+              display: flex;
+              flex-wrap: wrap;
+              justify-content: space-around;
+              align-items: center;
+              padding: 20px;
+          }
+  
+          .tab {
+              width: 200px;
+              height: 200px;
+              background-color: #3498db;
+              margin: 10px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              border-radius: 10px;
+          }
+  
+          /* Add more specific styling for each tab as needed */
+          /* You can also add hover effects or transitions */
+      </style>
+  </head>
+  
+  <body>
+      <!-- Main content section -->
+      <main>
+          <section class="dashboard">
+              <!-- Square tabs leading to different pages -->
+              <a href="{% url 'p_feedback_view' %}" class="tab">
+                  <h2>Tab 1</h2>
+                  <!-- Add any icon or content for Tab 1 -->
+              </a>
+  
+              <a href="/page2" class="tab">
+                  <h2>Tab 2</h2>
+                  <!-- Add any icon or content for Tab 2 -->
+              </a>
+  
+              <a href="/page3" class="tab">
+                  <h2>Tab 3</h2>
+                  <!-- Add any icon or content for Tab 3 -->
+              </a>
+  
+              <a href="/page4" class="tab">
+                  <h2>Tab 4</h2>
+                  <!-- Add any icon or content for Tab 4 -->
+              </a>
+          </section>
+      </main>
+  </body>
+  
+  </html>
+  
+
+  {% endblock %}

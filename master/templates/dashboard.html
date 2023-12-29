@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %}
+Dashboard
+{% endblock %}
+
+{% block body %}
+<body>
+    <!-- Header section -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/profile">Profile</a></li>
+                <li><a href="/settings">Settings</a></li>
+                <!-- Add more navigation links as needed -->
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main content section -->
+    <main>
+        <section class="dashboard">
+            <h1>Welcome to the Dashboard!</h1>
+            <!-- Your dashboard content goes here -->
+            <div class="dashboard-content">
+                <!-- Add various widgets, statistics, charts, etc. -->
+                <div class="widget">
+                    <h2>Widget 1</h2>
+                    <p>Content of Widget 1</p>
+                </div>
+
+                <div class="widget">
+                    <h2>Widget 2</h2>
+                    <p>Content of Widget 2</p>
+                </div>
+
+                <!-- Add more widgets as needed -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer section -->
+    <footer>
+        <p>&copy; 2023 Your Website</p>
+    </footer>
+
+    <!-- Add your JavaScript files or scripts here -->
+    <script src="path/to/your/scripts.js"></script>
+    <!-- Add any other scripts or libraries as needed -->
+</body>
+
+{% endblock %}
