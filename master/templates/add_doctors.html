@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% block title %}
+Dashboard | add doctors
+{% endblock %}
+
+{% block body %}
+<div class="flex flex-col lg:flex-row justify-center">
+    <!-- Form Section -->
+    <div class="lg:w-4/6 ">
+        <form action="" method="post" enctype="multipart/form-data" class="bg-white shadow-md rounded px-8 pb-8 m-2">
+            <h3 class="self-center text-xl mb-6 font-semibold whitespace-nowrap dark:text-white text-blue-700">
+                Add Doctors form</h3>
+            {% csrf_token %}
+
+
+
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="profile">
+                    Profile Image
+                </label>
+                <input name="profile" type="file" accept="image/*">
+            </div>
+        
+
+
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
+                    Doctors name
+                </label>
+                <input name="name"
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="name" type="text" placeholder="Dr. Jhon Doe">
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="degree">
+                    Degree
+                </label>
+                <input name="degree"
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="degree" type="text" placeholder="MD">
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="mobile">
+                    Mobile
+                </label>
+                <input name="mobile"
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="mobile" type="text" placeholder="(+91) 765 798 3454">
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="summary">
+                    Summary
+                </label>
+                <textarea name="summary"
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="summary" placeholder="Type your summary here..."></textarea>
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="address">
+                    Address
+                </label>
+                <textarea name="address"
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="address" placeholder="Type your address here..."></textarea>
+            </div>
+
+            <div class="flex items-center justify-between">
+                <button
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    type="submit">
+                    Add
+                </button>
+            </div>
+        </form>
+    </div>
+    
+</div>
+{% endblock %}
