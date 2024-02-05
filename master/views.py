@@ -5,10 +5,8 @@ from .models import doctor, Patient, ReportType, paid_installment
 from datetime import datetime, timedelta
 import humanize
 from django.core.files.uploadedfile import InMemoryUploadedFile
-
 from django.contrib import messages
 import requests
-
 
 current_time = timezone.now()
 
@@ -72,7 +70,7 @@ def add_doctors_view(request):
 
 @staff_authenticated
 def tasks_view(request):
-    api_url = "https://medicenterapi.pythonanywhere.com/"
+    api_url = "https://blogapirestframework.pythonanywhere.com/"
     response = requests.get(api_url)
     if response.status_code == 200:
         api_data = response.json()
@@ -196,3 +194,5 @@ def patient_delete(request, patient_id):
     get_patient.delete()
     print('patient deleted')
     return redirect('patients_view')
+
+
