@@ -15,10 +15,10 @@ Dashboard | add doctors
 
 
             <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="profile">
+                <!-- <label class="block text-gray-700 text-sm font-bold mb-2" for="profile">
                     Profile Image
-                </label>
-                <input name="profile" type="file" accept="image/*">
+                </label> -->
+                <input name="profile" type="hidden" accept="image/*">
             </div>
         
 
@@ -29,7 +29,7 @@ Dashboard | add doctors
                 </label>
                 <input name="name"
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    id="name" type="text" placeholder="Dr. Jhon Doe">
+                    id="name" type="text" placeholder="Dr. Jhon Doe" required>
             </div>
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="degree">
@@ -37,15 +37,15 @@ Dashboard | add doctors
                 </label>
                 <input name="degree"
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    id="degree" type="text" placeholder="MD">
+                    id="degree" type="text" placeholder="MD" required>
             </div>
             <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="mobile">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="mobile" required>
                     Mobile
                 </label>
                 <input name="mobile"
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    id="mobile" type="text" placeholder="(+91) 765 798 3454">
+                    id="mobile" type="text" placeholder="(+91) 765 798 3454" required>
             </div>
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="summary">
@@ -53,7 +53,7 @@ Dashboard | add doctors
                 </label>
                 <textarea name="summary"
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    id="summary" placeholder="Type your summary here..."></textarea>
+                    id="summary" placeholder="Type your summary here..." required></textarea>
             </div>
 
             <div class="mb-4">
@@ -62,7 +62,7 @@ Dashboard | add doctors
                 </label>
                 <textarea name="address"
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    id="address" placeholder="Type your address here..."></textarea>
+                    id="address" placeholder="Type your address here..." required></textarea>
             </div>
 
             <div class="flex items-center justify-between">

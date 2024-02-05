@@ -4,14 +4,19 @@ Dashboard
 {% endblock %}
 
 {% block body %}
+
 <div class="w-full flex justify-end">
     <a href="{% url 'add_doctors_view' %}"  class="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2 text-center me-2 mb-2 ml-auto" >
         <i class="fa fa-plus" aria-hidden="true"></i> Add Doctors
     </a>
 </div>
-
-
-
+<style>
+    .p-3 {
+        display: flex;
+        width: auto;
+        justify-content: space-between;
+    }
+</style>
 
 <div class="lg:flex flex-wrap justify-center">
     {% for doctor in doctors %}
@@ -22,11 +27,27 @@ Dashboard
                     src="{{ doctor.profile.url }}"
                     alt="" />
             </a>
+
+
             <div class="p-2">
-                <a href="#">
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{doctor.name|title}} <span class="bg-purple-200 text-purple-800 text-xs font-medium mx-2 me-2 px-2 py-1 rounded dark:bg-purple-900 dark:text-purple-300">{{doctor.degree|upper}}</span>
-                    </h5>
+            <div class="p-3">
+                <a href="#" class="flex items-center">
+                    <div class="flex items-center">
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{doctor.name|title}}</h5>
+                    </div>
+                    <h5>
+                    <a href="{% url 'edit_doctors_view' doctor_id=doctor.id %}" class="text-blue-500">
+                        <i class="fa fa-pencil-square-o mx-2 fa-2x" aria-hidden="true"></i>
+                    </a>
+                </h5>
                 </a>
+                
+            
+            </div>
+
+            <span class="bg-purple-200 text-purple-800 text-xs font-medium mx-2 me-2 px-2 py-1 rounded dark:bg-purple-900 dark:text-purple-300">{{doctor.degree|upper}}</span>
+                
+
                 <p class="mb-3 font-normal text-gray-700 dark:text-gray-400 ">{{doctor.summary}}</p>
                 <hr class="my-2">
                 <div class="my-2 flex justify-between">

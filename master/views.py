@@ -7,6 +7,8 @@ import humanize
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.contrib import messages
 import requests
+from django.core.files.storage import default_storage
+from django.core.files.base import ContentFile
 
 current_time = timezone.now()
 
@@ -24,6 +26,10 @@ def get_patient_details(patient_id=None):
         get_patient = Patient.objects.get(id=patient_id)
     return get_patient
 
+def get_installment_details():
+    get_installment = paid_installment.objects.all()
+    return get_installment
+
 def get_report_details(report_type_id=None):
     if report_type_id is None:
         get_report = ReportType.objects.all().order_by('-id')
@@ -32,11 +38,34 @@ def get_report_details(report_type_id=None):
     return get_report
 
 @staff_authenticated
-def dashboard_view(request):
+def tasks_view(request):
+    api_url = "https://blogapirestframework.pythonanywhere.com/"
+    response = requests.get(api_url)
+    if response.status_code == 200:
+        api_data = response.json()
+    else:
+        api_data = []
     context = {
-        'total_doctors':get_doctor_details().count(),
-        'total_patients':get_patient_details().count()
+        'tasks':api_data
     }
+    return render(request, 'tasks.html', context)
+
+@staff_authenticated
+def dashboard_view(request):
+    api_url = "https://blogapirestframework.pythonanywhere.com/"
+    response = requests.get(api_url)
+    api_data = []
+
+    if response.status_code == 200:
+        api_data = response.json()
+
+    context =   {
+                'total_doctors':get_doctor_details().count(),
+                'total_patients':get_patient_details().count(),
+                'total_transactions':get_installment_details().count(),
+                'total_tasks': len(api_data),
+                'total_tests': get_report_details().count()
+                }
     return render(request, 'dashboard.html', context)
 
 @staff_authenticated
@@ -69,17 +98,42 @@ def add_doctors_view(request):
     return render(request, 'add_doctors.html')
 
 @staff_authenticated
-def tasks_view(request):
-    api_url = "https://blogapirestframework.pythonanywhere.com/"
-    response = requests.get(api_url)
-    if response.status_code == 200:
-        api_data = response.json()
-    else:
-        api_data = []
+def edit_doctors_view(request, doctor_id):
+    get_doctor = get_doctor_details(doctor_id=doctor_id)
+
+    if request.method == 'POST':
+        name_ = request.POST['name']
+        degree_ = request.POST['degree']
+        mobile_ = request.POST['mobile']
+        summary_ = request.POST['summary']
+        address_ = request.POST['address']
+
+        # Check if a new profile image is uploaded
+        if 'profile' in request.FILES:
+            profile_ = request.FILES['profile']
+            get_doctor.profile = profile_
+
+        # Update other fields
+        get_doctor.name = name_
+        get_doctor.degree = degree_
+        get_doctor.contact = mobile_
+        get_doctor.summary = summary_
+        get_doctor.address = address_
+
+        # Save the updated doctor instance
+        get_doctor.save()
+
+        print('Doctor updated')
+        return redirect('doctors_view')
+
     context = {
-        'tasks':api_data
+        'doctor': get_doctor,
+        'doctors': get_doctor_details(),
+        'reports': get_report_details(),
+        'humanize': humanize.naturalday(current_time - get_doctor.created_at)
     }
-    return render(request, 'tasks.html', context)
+
+    return render(request, 'edit_doctors.html', context)
 
 @staff_authenticated
 def patients_view(request):
@@ -138,8 +192,6 @@ def patient_update(request, patient_id):
         get_patient.save()
         print("Patient data updated")
         return redirect('patients_view')
-    
-
     
     context = {
         'patient':get_patient,

@@ -21,7 +21,7 @@ Dashboard
           </div>
         </div>
         <div class="p-4 pt-px">
-          <a href="#" class="flex items-center text-blue-500 hover:text-blue-700">
+          <a href="{% url 'doctors_view' %}" class="flex items-center text-blue-500 hover:text-blue-700">
             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg">
               <!-- Your SVG path or content goes here -->
@@ -48,7 +48,7 @@ Dashboard
           </div>
         </div>
         <div class="p-4 pt-px">
-          <a href="#" class="flex items-center text-blue-500 hover:text-blue-700">
+          <a href="{% url 'patients_view' %}" class="flex items-center text-blue-500 hover:text-blue-700">
             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg">
               <!-- Your SVG path or content goes here -->
@@ -64,18 +64,18 @@ Dashboard
         <div class="flex flex-row items-center justify-between px-4 py-4">
           <div class="flex mr-4">
             <span class="items-center px-4 py-4 m-auto bg-green-200 rounded-full hover:bg-green-300">
-              <i class="fa fa-tasks fa-2x text-green-700" aria-hidden="true"></i>
+              <i class="fa-regular fa-newspaper fa-2x text-green-700" aria-hidden="true"></i>
             </span>
           </div>
           <div class="flex-1 pl-4">
-            <div class="text-xl font-medium text-gray-700">563</div>
+            <div class="text-xl font-medium text-gray-700">{{total_tasks}}</div>
             <div class="text-sm text-gray-700 sm:text-base">
-              Total Tasks
+              Notifications and Tasks
             </div>
           </div>
         </div>
         <div class="p-4 pt-px">
-          <a href="#" class="flex items-center text-blue-500 hover:text-blue-700">
+          <a href="{% url 'tasks_view' %}" class="flex items-center text-blue-500 hover:text-blue-700">
             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg">
               <!-- Your SVG path or content goes here -->
@@ -95,9 +95,9 @@ Dashboard
             </span>
           </div>
           <div class="flex-1 pl-4">
-            <div class="text-xl font-medium text-gray-700">563</div>
+            <div class="text-xl font-medium text-gray-700">{{total_transactions}}</div>
             <div class="text-sm text-gray-700 sm:text-base">
-              Payment Details
+              Payment Log
             </div>
           </div>
         </div>
@@ -113,6 +113,41 @@ Dashboard
         </div>
       </div>
     </div>
+
+
+
+
+    <div class="w-full sm:w-full lg:w-1/2">
+      <div class="flex flex-col border-2 border-gray-300 rounded m-2">
+        <div class="flex flex-row items-center justify-between px-4 py-4">
+          <div class="flex mr-4">
+            <span class="items-center px-4 py-4 m-auto bg-orange-200 rounded-full hover:bg-orange-300">
+              <i class="fa-solid fa-microscope fa-2x text-orange-700" aria-hidden="true"></i>
+            </span>
+          </div>
+          <div class="flex-1 pl-4">
+            <div class="text-xl font-medium text-gray-700">{{total_tests}}</div>
+            <div class="text-sm text-gray-700 sm:text-base">
+              Report Types
+            </div>
+          </div>
+        </div>
+        <div class="p-4 pt-px">
+          <a href="#" class="flex items-center text-blue-500 hover:text-blue-700">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg">
+              <!-- Your SVG path or content goes here -->
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+            Click me
+          </a>
+        </div>
+      </div>
+    </div>
+
+
+
+
   </div>
   
 {% endblock %}

@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% block title %}
+Dashboard | Add Doctors
+{% endblock %}
+
+{% block body %}
+<div class="flex flex-col lg:flex-row justify-center">
+    <div class="lg:w-4/6 ">
+        <form action="" method="post" enctype="multipart/form-data" class="bg-white shadow-md rounded px-8 pb-8 m-2">
+            <h3 class="self-center text-xl mb-6 font-semibold whitespace-nowrap dark:text-white text-blue-700">
+                Add Doctors Form
+            </h3>
+            {% csrf_token %}
+
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="profile">
+                    Profile Image
+                </label>
+                {% if doctor.profile %}
+                    <img id="profileImage" src="{{ doctor.profile.url }}" alt="Profile Image" class="mb-2 rounded">
+                {% else %}
+                    <img id="profileImage" alt="Profile Image" class="mb-2 rounded" style="display: none;">
+                {% endif %}
+                <input name="profile" type="file" accept="image/*" onchange="updateProfileImage(this)">
+            </div>
+
+
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
+                    Doctors name
+                </label>
+                <input name="name"
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="name" type="text" placeholder="Dr. Jhon Doe" value="{{doctor.name}}" required>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="degree">
+                    Degree
+                </label>
+                <input name="degree"
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="degree" type="text" placeholder="MD" value="{{doctor.degree}}" required>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="mobile">
+                    Mobile
+                </label>
+                <input name="mobile"
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="mobile" type="text" placeholder="(+91) 765 798 3454" value="{{doctor.contact}}" required>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="summary">
+                    Summary
+                </label>
+                <textarea name="summary"
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="summary" placeholder="Type your summary here..." required>{{doctor.summary}}</textarea>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="address">
+                    Address
+                </label>
+                <textarea name="address"
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="address" placeholder="Type your address here..." required>{{doctor.address}}</textarea>
+            </div>
+            <div class="flex items-center justify-between">
+                <button
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    type="submit">
+                    Add
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    function updateProfileImage(input) {
+        var profileImage = document.getElementById('profileImage');
+        var newImage = input.files[0];
+
+        if (newImage) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                profileImage.src = e.target.result;
+                profileImage.style.display = 'block';
+            };
+
+            reader.readAsDataURL(newImage);
+        } else {
+            profileImage.style.display = 'none';
+        }
+    }
+</script>
+{% endblock %}

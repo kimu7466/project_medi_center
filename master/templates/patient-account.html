@@ -4,7 +4,6 @@ Patient-Account-Page
 {% endblock %}
 
 {% block body %}
-
 <div class="flex flex-col lg:flex-row justify-center">
     <!-- Form Section -->
     <div class="lg:w-2/3 ">
@@ -12,8 +11,6 @@ Patient-Account-Page
             <h3 class="self-center text-xl mb-6 font-semibold whitespace-nowrap dark:text-white text-blue-700">
                 Patient Account : <span class="text-red-500">{{patient.first_name}} {{patient.last_name}}</span> </h3>
             {% csrf_token %}
-
-
             <div
                 class="w-fll text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white my-4">
                 <a
@@ -25,16 +22,13 @@ Patient-Account-Page
                     class="relative inline-flex items-center w-full px-4 py-2 text-sm font-medium border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white justify-between">
                     <span>Paid Amount</span>
                     <span><i class="fa fa-inr"></i> {{patient.paid_amount}}</span>
-                    
                 </a>
                 <a
                     class="relative inline-flex items-center w-full px-4 py-2 text-sm font-medium border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white justify-between">
                     <span>Remaining Amount</span>
-                    <span><i class="fa fa-inr"></i> {{patient.remaining_amount}}</span>
-                    
+                    <span><i class="fa fa-inr"></i> {{patient.remaining_amount}}</span>  
                 </a>
             </div>
-
             {% if patient.remaining_amount != 0 %}
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="payment_installment">
@@ -54,7 +48,6 @@ Patient-Account-Page
             {% endif %}
         </form>
     </div>
-    
 </div>
 <div class="lg:w-2/3  bg-white border border-gray-200 shadow-md rounded my-5 mx-auto">
     <header class="border-b border-gray-100">
@@ -97,7 +90,6 @@ Patient-Account-Page
                                             {{entry.payment_id}}</p>
                                     </div>
                                 </div>
-
                         </td>
                         <td class="p-2 whitespace-nowrap">
                             <div class="flex items-center gap-3">
@@ -123,9 +115,7 @@ Patient-Account-Page
                     {% endfor %}
                     {% endif %}
                 </tbody>
-
             </table>
-
         </div>
     </div>
 </div>

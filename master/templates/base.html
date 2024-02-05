@@ -16,6 +16,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+        
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 </head>
 
@@ -54,10 +57,9 @@
                 </ul>
 
                 <div class="mb-5 border border-white rounded p-2">
-                    <h3 class="h6 mb-3">{{request.session.first_name}} {{request.session.last_name}}
-                        [{{request.session.role}}]</h3>
+                    <h3 class="h6 mb-3">{{request.session.first_name|title}} {{request.session.last_name|title}}</h3>
+                    <h3 class="h6 mb-3">{{request.session.role|title}}</h3>
                     <h3 class="h6 mb-3">{{request.session.staff_id}}</h3>
-
                 </div>
 
                 <div class="footer">
@@ -107,6 +109,26 @@
     <script src="{% static 'js/popper.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/main.js' %}"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var currentPath = window.location.pathname;
+        var links = document.querySelectorAll("#sidebar li a");
+
+        links.forEach(function (link) {
+            if (link.getAttribute("href") === currentPath) {
+                link.parentElement.classList.add("active");
+            } else {
+                link.parentElement.classList.remove("active");
+            }
+
+            // Additional check to handle the special case for the Dashboard link
+            if (currentPath === '/' && link.getAttribute("href") === '/dashboard/') {
+                link.parentElement.classList.add("active");
+            }
+        });
+    });
+</script>
 
 </body>
 

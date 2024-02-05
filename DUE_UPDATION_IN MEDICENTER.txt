@@ -1,0 +1,24 @@
+1. add and edit reports_types and reports_ammount.
+
+2. edit doctor with image upload.
+
+3. remove image upload from add doctor.
+
+4. only the admin can see add and edit features for doctors and reports.
+
+5. employees can only see all details and manage patients.
+
+6. use the upper/lower method to remove case sensitivity from STAFF_ID and EMAIL.
+
+7. add fields of dashboard.
+
+8. manage time settings for humanize and local.
+
+9. add reports in the dashboard.
+
+10. add scripts for the sidebar active button.
+
+11. in the doctor's summary part only 3-4 lines should be visible and three dots for the expanstion of summary (...more) clicking on this will open a popup window for comlete details of that doctor.
+
+12. sidebar needs to be fix while scrolling.
+
