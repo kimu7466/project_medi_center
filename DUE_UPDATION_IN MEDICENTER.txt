@@ -8,7 +8,7 @@
 
 5. employees can only see all details and manage patients.
 
-6. use the upper/lower method to remove case sensitivity from STAFF_ID and EMAIL.
+6. use the ( upper/lower + strip ) method to remove case sensitivity from STAFF_ID and EMAIL.
 
 7. add fields of dashboard.
 
@@ -18,7 +18,22 @@
 
 10. add scripts for the sidebar active button.
 
-11. in the doctor's summary part only 3-4 lines should be visible and three dots for the expanstion of summary (...more) clicking on this will open a popup window for comlete details of that doctor.
+11. in the doctor's summary part only 3-4 lines should be visible and three dots for the expansion of the summary (...more) clicking on this will open a popup window for complete details of that doctor.
 
-12. sidebar needs to be fix while scrolling.
+12. The sidebar needs to be fixed while scrolling.
 
+13. total patients of individual doctors.
+
+14. auto arrange the number in this format Eg. :- (+91 1234 567 890)
+
+15. crop image for a 1:1 ratio before upload.
+
+16. try to make the tasks card view more attractive with an auto-adjust grid or row-wise system.
+
+17. add male/female column for doctor/patient
+
+18. add automatic titles like (dr./mr./ms./mrs.).
+
+19. add feature to remove image from edit doctor option. also if removed set default image again.
+
+20. 
