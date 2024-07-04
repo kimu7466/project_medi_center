@@ -1,9 +1,17 @@
 {% extends 'base.html' %}
 {% block title %}
-Dashboard | Add Doctors
+Edit Doctors
 {% endblock %}
 
 {% block body %}
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
 <div class="flex flex-col lg:flex-row justify-center">
     <div class="lg:w-4/6 ">
         <form action="" method="post" enctype="multipart/form-data" class="bg-white shadow-md rounded px-8 pb-8 m-2">

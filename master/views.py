@@ -2,12 +2,9 @@ from django.shortcuts import render, redirect
 from django.utils import timezone
 from staff.views import staff_authenticated
 from .models import doctor, Patient, ReportType, paid_installment
-from datetime import datetime, timedelta
 import humanize
-from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.contrib import messages
 import requests
-from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
 
 current_time = timezone.now()
@@ -79,11 +76,11 @@ def doctors_view(request):
 def add_doctors_view(request):
 
     if request.method == 'POST':
-        name_ = request.POST['name']
-        degree_ = request.POST['degree']
-        mobile_ = request.POST['mobile']
-        summary_ = request.POST['summary']
-        address_ = request.POST['address']
+        name_ = request.POST['name'].strip()
+        degree_ = request.POST['degree'].strip()
+        mobile_ = request.POST['mobile'].strip()
+        summary_ = request.POST['summary'].strip()
+        address_ = request.POST['address'].strip()
 
         new_doctor = doctor.objects.create(
             name = name_,
@@ -93,7 +90,7 @@ def add_doctors_view(request):
             address = address_
         )
         new_doctor.save()
-        print('doctor addedd')
+        messages.success(request, "Doctor Added successfully.")
         return redirect('doctors_view')
     return render(request, 'add_doctors.html')
 
@@ -102,28 +99,25 @@ def edit_doctors_view(request, doctor_id):
     get_doctor = get_doctor_details(doctor_id=doctor_id)
 
     if request.method == 'POST':
-        name_ = request.POST['name']
-        degree_ = request.POST['degree']
-        mobile_ = request.POST['mobile']
-        summary_ = request.POST['summary']
-        address_ = request.POST['address']
+        name_ = request.POST['name'].strip()
+        degree_ = request.POST['degree'].strip()
+        mobile_ = request.POST['mobile'].strip()
+        summary_ = request.POST['summary'].strip()
+        address_ = request.POST['address'].strip()
 
-        # Check if a new profile image is uploaded
         if 'profile' in request.FILES:
             profile_ = request.FILES['profile']
             get_doctor.profile = profile_
 
-        # Update other fields
         get_doctor.name = name_
         get_doctor.degree = degree_
         get_doctor.contact = mobile_
         get_doctor.summary = summary_
         get_doctor.address = address_
 
-        # Save the updated doctor instance
         get_doctor.save()
 
-        print('Doctor updated')
+        messages.success(request, "Doctor updated Successfully.")
         return redirect('doctors_view')
 
     context = {
@@ -156,10 +150,9 @@ def patients_view(request):
             address=address_
         )
         new_patient.save()
-        print('Patient addedd')
+        messages.success(request, 'Patient data added successfully.')
         return redirect('patients_view')
     
-    print()
     context = {
         'doctors':get_doctor_details(),
         'reports':get_report_details(),
@@ -190,7 +183,8 @@ def patient_update(request, patient_id):
         get_patient.report_type_id = report_type_id_
         get_patient.address = address_
         get_patient.save()
-        print("Patient data updated")
+        messages.success(request, 'Patient data updated successfully.')
+
         return redirect('patients_view')
     
     context = {
@@ -225,13 +219,13 @@ def patient_account(request, patient_id):
                     paid_payment = payment_installment_
                 )
                 new_payment_entry.save()
-                print("payment added")
+                messages.success(request, 'payment added successfully.')
                 return redirect('patient_account', patient_id=patient_id)
             else:
-                print("Payment installment must be small than remaining amount")
+                messages.info(request, 'Payment installment must be small than remaining amount.')
                 return redirect('patient_account', patient_id=patient_id)
         else:
-            print("You can not add 0")
+            messages.error(request, 'You can not add 0.')
             return redirect('patient_account', patient_id=patient_id)
 
     context = {
@@ -244,7 +238,14 @@ def patient_account(request, patient_id):
 def patient_delete(request, patient_id):
     get_patient = get_patient_details(patient_id=patient_id)
     get_patient.delete()
-    print('patient deleted')
+    messages.success(request, 'patient deleted successfully.')
+
     return redirect('patients_view')
 
 
+@staff_authenticated
+def delete_doctors_view(request, doctor_id):
+    get_doctor = get_doctor_details(doctor_id=doctor_id)
+    get_doctor.delete()
+    messages.success(request, 'Doctor deleted successfully.')
+    return redirect("doctors_view")

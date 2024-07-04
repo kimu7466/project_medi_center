@@ -1,9 +1,17 @@
 {% extends 'base.html' %}
 {% block title %}
-Patient-Edit-Page
+Edit Patient
 {% endblock %}
 
 {% block body %}
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
 <div class="flex flex-col lg:flex-row justify-center">
     <!-- Form Section -->
     <div class="lg:w-2/3 ">
