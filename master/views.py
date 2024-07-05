@@ -6,8 +6,9 @@ import humanize
 from django.contrib import messages
 import requests
 from django.core.files.base import ContentFile
+from datetime import datetime
 
-current_time = timezone.now()
+current_time = datetime.now()
 
 def get_doctor_details(doctor_id=None):
     if doctor_id is None:
